@@ -26,6 +26,18 @@ module.exports = function (config) {
     logLevel: config.LOG_INFO,
     autoWatch: true,
     browsers: ['Firefox'],
-    singleRun: false
-  });
+    singleRun: false,
+
+    customLaunchers: {
+      'FirefoxHeadless': {
+          base: 'Firefox',
+          flags: [
+              '-headless',
+          ],
+          prefs: {
+              'network.proxy.type': 0
+          }
+        }
+  }});
+  
 };

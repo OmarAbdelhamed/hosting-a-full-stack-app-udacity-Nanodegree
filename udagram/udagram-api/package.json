@@ -12,7 +12,7 @@
     "prod": "npx tsc && node ./www/server.js",
     "clean": "rimraf -rf www/ || exit 0",
     "zip": "zip -r Archieve.zip .",
-    "deploy": "npm install && npm run build && eb list && eb use udagram-api-dev && eb deploy",
+    "deploy": "npm install && npm run build && eb list && eb use aws-proj && eb deploy",
     "build": "npm run clean && tsc && cp -rf src/config www/config && cp .npmrc www/.npmrc && cp package.json www/package.json && cd www && npm run zip && cd ..",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

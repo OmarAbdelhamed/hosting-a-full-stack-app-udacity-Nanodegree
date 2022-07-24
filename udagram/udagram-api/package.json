@@ -11,7 +11,7 @@
     "dev": "ts-node-dev --respawn --transpile-only ./src/server.ts",
     "prod": "npx tsc && node ./www/server.js",
     "clean": "rimraf -rf www/ || exit 0",
-    "zip": "7z a -tzip Archive.zip . ",
+    "zip": "zip -r Archieve.zip .",
     "deploy": "npm run install && npm run build && eb list && eb use udagram-api-dev && eb deploy",
     "build": "npm run clean && tsc && cp -rf src/config www/config && cp .npmrc www/.npmrc && cp package.json www/package.json && cd www && npm run zip && cd ..",
     "test": "echo \"Error: no test specified\" && exit 1"

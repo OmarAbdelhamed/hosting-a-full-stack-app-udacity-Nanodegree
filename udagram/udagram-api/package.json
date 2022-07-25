@@ -12,8 +12,8 @@
         "prod": "npx tsc && node ./www/server.js",
         "clean": "rm -rf www/ || true",
         "deploy_local": "npm run build && eb init aws-proj --region us-east-1 --platform node.js && eb use aws-proj && eb deploy aws-proj",
-        "deploy": "npm install npm run build && eb deploy aws-proj && npm run set:env",
-        "build": "npm install . && npm run clean && tsc && cp -rf src/config www/config && cp .npmrc www/.npmrc && cp package.json www/package.json && cd www && zip -r Archive.zip . && cd ..",
+        "deploy": "npm run build && eb deploy aws-proj && npm run set:env",
+        "build": "npm install && npm run clean && tsc && cp -rf src/config www/config && cp .npmrc www/.npmrc && cp package.json www/package.json && cd www && zip -r Archive.zip . && cd ..",
         "test": "echo \"Error: no test specified\" && exit 1",
         "set:env": "eb setenv POSTGRES_USERNAME=$POSTGRES_USERNAME POSTGRES_PASSWORD=$POSTGRES_PASSWORD POSTGRES_HOST=$POSTGRES_HOST DB_PORT=$DB_PORT POSTGRES_DB=$POSTGRES_DB AWS_REGION=$AWS_REGION AWS_PROFILE=$AWS_PROFILE JWT_SECRET=$JWT_SECRET AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY"
   },

@@ -8,14 +8,14 @@ orbs:
 jobs:
   build:
     docker:
-      - image: "cimg/base:stable"
+      - image: 'cimg/base:stable'
     steps:
       - node/install
       - checkout
       - aws-cli/setup
       - eb/setup
       - run:
-          name: "Checking Versions"
+          name: 'Checking Versions'
           command: |
             node --version
       - run:
@@ -34,10 +34,6 @@ jobs:
           name: Back-End Build
           command: |
             npm run api:build
-      - run:
-          name: Front-End Test
-          command: |
-            npm run frontend:test      
       - run:
           name: Deploy Back-End EB
           command: |

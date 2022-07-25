@@ -1,0 +1,43 @@
++ # Project Infrastructure
+
++ ## the project contains a Backend and Frontend applications
+
++ ### udgram-api (../udagram/udagram-api)
+
+The back-end application containing migration folders (../udagram/udagram-api/src/migrations) that what makes our database happen 
+
+### you can see the ERD of the Data base at (../screenshots/ERD_DB.png).
+
+- Database hosted by RDS amazon service as shown at (../screenshots/database (RDS).jpg).
+
+- The backend hosted by Elastic Beanstalk amazon service (../screenshots/Environments health and info (EB).jpg)
+
+### Dont Forget to update POSTGRES_HOST (.env or eb variable) with RDS end point
+
+to deploy backend to aws follow these steps :-
+
+- 1- create IAM user.
+- 2- eb init continue with configuration steps & Create Elastic beanstalk environment .
+- 3- run in bash npm run api:build (this will install , build and prepare your project for deployment)
+- 4- run in bash nom run api:deploy to start deploying yor app to your Elastic beanstalk env.
+
+## udagram-frontend (../udagram/udagram-frontend)
+
+### Frontend application
+
+- application is hosted to AWS s3 service as shown at (../screenshots/s3 bucket.jpg)
+
+- update apiHost at these directories  
+  ("../udagram/udagram-frontend/src/environments/environment.ts")
+  ("../udagram/udagram-frontend/src/environments/environment.prod.ts")
+  with your api endpoint from Elastic beanstalk env after deploying
+
+to deploy frontend to AWS :-
+
+- 1-create aws s3 bucket using cli (if not exist)
+  aws s3api create-bucket --bucket new_bucket --region us-east-1
+- 2- run in bash npm run frontend:build (this will install , build and prepare your app to deployment)
+- 3- run in bash npm run frontend:deploy to upload your files to your bucket
+
+- front-end link
+  [http://projecttestbucket.s3-website-us-east-1.amazonaws.com]

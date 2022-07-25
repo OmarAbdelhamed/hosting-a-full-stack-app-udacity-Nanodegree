@@ -14,7 +14,7 @@
     "prod": "npx tsc && node ./www/server.js",
     "clean": "rm -rf www/ || true",
     "deploy_local": "npm run build && eb init aws-proj --region us-east-1 --platform node.js && eb use aws-proj && eb deploy aws-proj",
-    "deploy": "npm run build && eb init aws-proj --region us-east-1 --platform node.js && eb use aws-proj && eb deploy aws-proj && npm run set:env",
+    "deploy": "npm run build && eb deploy aws-proj && npm run set:env",
     "deploy_sh": "sh \"bin/deploy.sh\" && \"bin/deploy.sh\" ",
     "build_local": "npm install . && npm run clean && tsc && cp -rf src/config www/config && cp .npmrc www/.npmrc && cp package.json www/package.json && cd www && zip -r Archive.zip . && cd ..",
     "build": "npm install && npm run clean && tsc && cp -rf src/config www/config&& cp .npmrc www/.npmrc&& cp package.json www/package.json&& cd www&& zip -r Archive.zip .&& cd ..",

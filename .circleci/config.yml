@@ -29,29 +29,29 @@ jobs:
           name: Install API Dependencies
           command: |
             echo "npm run api:install : Install dependencies in the the backend API  "
-      # TODO: Lint the frontend
+            npm run api:install
       - run:
           name: Front-End Lint
           command: |
             echo "TODO: Lint the frontend"
-      # TODO: Build the frontend app
+            npm run frontend:lint
       - run:
           name: Front-End Build
           command: |
             echo "TODO: Build the frontend app"
-      # TODO: Build the backend API
+            npm run frontend:build
       - run:
           name: API Build
           command: |
             echo ": Build the backend API"
-  # deploy step will run only after manual approval
+            npm run api:build
   deploy:
     docker:
       - image: 'cimg/base:stable'
       # more setup needed for aws, node, elastic beanstalk
     steps:
       - node/install:
-          node-version: '14.15'
+          node-version: '16.14.2'
       - eb/setup
       - aws-cli/setup
       - checkout
@@ -60,6 +60,7 @@ jobs:
           # TODO: Install, build, deploy in both apps
           command: |
             echo "# api:deploy Install, build, deploy in both apps"
+            npm run api:deploy
 
 workflows:
   udagram:

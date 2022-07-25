@@ -52,7 +52,7 @@ jobs:
           command: |
             npm run frontend:deploy
 workflows:
-  basic-workflow:
+  deploy:
     jobs:
       - build:
           filters:

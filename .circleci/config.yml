@@ -28,7 +28,7 @@ jobs:
       - run:
           name: Install API Dependencies
           command: |
-            echo "api:install : Install dependencies in the the backend API  "
+            echo "npm run api:install : Install dependencies in the the backend API  "
       # TODO: Lint the frontend
       - run:
           name: Front-End Lint

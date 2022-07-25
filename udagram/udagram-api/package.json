@@ -6,15 +6,17 @@
     "node": ">16.0.0"
   },
   "scripts": {
-    "start": "node ./server.js",
+    "start": "node server.js",
     "tsc": "npx tsc",
-    "dev": "ts-node-dev --respawn --transpile-only ./src/server.ts",
+    "dev": "npx ts-node-dev --respawn --transpile-only ./src/server.ts",
     "prod": "npx tsc && node ./www/server.js",
-    "clean": "rimraf -rf www/ || exit 0",
-    "zip": "zip -r Archive.zip .",
-    "deploy": "eb use aws-proj && eb init aws-proj --platform nodejs && eb deploy aws-proj",
-    "build": "npm run clean && tsc && cp -rf src/config www/config && cp .npmrc www/.npmrc && cp package.json www/package.json && cd www && npm run zip && cd ..",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "clean": "rm -rf www/ || true",
+    "deploy_local": "npm run build && eb init aws-proj --region us-east-1 --platform node.js && eb use aws-proj && eb deploy aws-proj",
+    "deploy": "chmod +x bin/deploy.sh && bin/deploy.sh",
+    "deploy_sh": "sh \"bin/deploy.sh\" && \"bin/deploy.sh\" ",
+    "build": "npm install . && npm run clean && tsc && cp -rf src/config www/config && cp .npmrc www/.npmrc && cp package.json www/package.json && cd www && zip -r Archive.zip . && cd ..",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "set:env": "eb setenv POSTGRES_USERNAME=$POSTGRES_USERNAME POSTGRES_PASSWORD=$POSTGRES_PASSWORD POSTGRES_HOST=$POSTGRES_HOST DB_PORT=$DB_PORT POSTGRES_DB=$POSTGRES_DB AWS_REGION=$AWS_DEFAULT_REGION AWS_PROFILE=$AWS_PROFILE JWT_SECRET=$JWT_SECRET AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY"
   },
   "keywords": [],
   "author": "Gabriel Ruttner",

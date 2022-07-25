@@ -9,7 +9,6 @@ jobs:
   build:
     docker:
       - image: "cimg/base:stable"
-    # setting up all the softwares used for installation, building and deploying the application.
     steps:
       - node/install
       - checkout
@@ -40,10 +39,6 @@ jobs:
           command: |
             npm run frontend:test
       - run:
-          name: Back-End Test
-          command: |
-            npm run backend:test
-      - run:
           name: Deploy Back-End EB
           command: |
             npm run backend:deploy
@@ -54,7 +49,4 @@ jobs:
 workflows:
   deploy:
     jobs:
-      - build:
-          filters:
-            branches:
-              only: main
+      - build

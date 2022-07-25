@@ -6,8 +6,8 @@ deploy:
   artifact: www/Archive.zip
 environment-defaults:
   aws-proj:
-    branch: master
-    repository: hosting-a-full-stack-app-udacity-Nanodegree  
+    branch: null
+    repository: null
 global:
   application_name: aws-circle-ci-api
   branch: null

@@ -55,4 +55,18 @@ jobs:
             npm run frontend:deploy
       - run:
           name: Deploy App
-
+workflows:
+  udagram:
+    jobs:
+      - build
+      - hold:
+          filters:
+            branches:
+              only:
+                - master
+          type: approval
+          requires:
+            - build
+      - deploy:
+          requires:
+            - build

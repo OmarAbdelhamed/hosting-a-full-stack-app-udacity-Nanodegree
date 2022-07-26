@@ -43,7 +43,6 @@ jobs:
           command: |
             npm run frontend:deploy
 workflows:
-  workflows:
     build:
       jobs:
         - build:

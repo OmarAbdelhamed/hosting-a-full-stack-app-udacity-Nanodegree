@@ -46,7 +46,7 @@ workflows:
   workflows:
     build:
       jobs:
-        - build:
+        - build
             filters:
               branches:
                 only:

@@ -46,7 +46,6 @@ workflows:
   build:
     jobs:
       - build
-        requires: push
-          filters:
+        filters:
             branches:
-              only: main
+                only: main
